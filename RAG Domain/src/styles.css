@@ -1,0 +1,146 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — "Archive Terminal"
+ * Deep ink surfaces, warm amber signal colour, mono for machine data.
+ * All colours are oklch tokens. Never hardcode colours in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+
+  --shadow-panel: 0 1px 0 0 var(--hairline), 0 24px 60px -30px oklch(0 0 0 / 0.8);
+  --shadow-glow: 0 0 0 1px var(--primary), 0 0 32px -8px var(--primary);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: oklch(0.17 0.012 258);
+  --foreground: oklch(0.94 0.008 90);
+
+  --surface: oklch(0.21 0.014 258);
+  --surface-raised: oklch(0.245 0.016 258);
+
+  --card: oklch(0.21 0.014 258);
+  --card-foreground: oklch(0.94 0.008 90);
+  --popover: oklch(0.21 0.014 258);
+  --popover-foreground: oklch(0.94 0.008 90);
+
+  --primary: oklch(0.79 0.15 72);
+  --primary-foreground: oklch(0.19 0.02 60);
+
+  --secondary: oklch(0.27 0.016 258);
+  --secondary-foreground: oklch(0.92 0.008 90);
+
+  --muted: oklch(0.25 0.014 258);
+  --muted-foreground: oklch(0.68 0.012 258);
+
+  --accent: oklch(0.74 0.11 195);
+  --accent-foreground: oklch(0.18 0.02 240);
+
+  --destructive: oklch(0.64 0.19 22);
+  --destructive-foreground: oklch(0.97 0.01 90);
+
+  --success: oklch(0.75 0.14 155);
+  --warning: oklch(0.8 0.14 85);
+
+  --border: oklch(0.3 0.014 258);
+  --border-strong: oklch(0.4 0.018 258);
+  --hairline: oklch(1 0 0 / 0.04);
+  --input: oklch(0.26 0.014 258);
+  --ring: oklch(0.79 0.15 72);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        oklch(0.79 0.15 72 / 0.09),
+        transparent 70%
+      ),
+      radial-gradient(ellipse 60% 40% at 90% 10%, oklch(0.74 0.11 195 / 0.06), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: oklch(0.79 0.15 72 / 0.3);
+  }
+}
+
+@utility panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
